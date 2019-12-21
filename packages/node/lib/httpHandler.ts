@@ -1,4 +1,4 @@
-import { HttpHandler, HttpEvent, HttpRequest, HttpHeaders, HttpResponse, HttpJsonParseError } from "@nger/http";
+import { HttpHandler, HttpEvent, HttpRequest, HttpHeaders, HttpResponse, HttpJsonParseError, HttpParams } from "@nger/http";
 import { Observable } from 'rxjs';
 import request, { Response } from 'request';
 import { parse } from 'content-type';
@@ -9,12 +9,23 @@ export class NodeHttpHandler extends HttpHandler {
         req.headers.forEach((name, value) => {
             Reflect.set(headers, name, value.length === 1 ? value[0] : value)
         });
+        let url = new URL(req.url);
+        let params = req.params || new HttpParams();
+        if (url.searchParams) {
+            url.searchParams.forEach((value, key) => {
+                params = params.set(key, value)
+            });
+        }
+        const paramsStr = params.toString();
         return new Observable((obser) => {
-            request(req.url, {
+            request({
+                url: url.origin + `?${paramsStr}`,
+                host: url.host,
+                port: parseInt(url.port),
                 method: req.method,
                 headers: headers,
                 body: req.body,
-                gzip: true
+                gzip: true,
             }, (err: Error, res: Response, body: any) => {
                 if (err) obser.error(err);
                 const headers = res.headers;
