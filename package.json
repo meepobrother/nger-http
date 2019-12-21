@@ -1,0 +1,15 @@
+{
+  "name": "root",
+  "private": true,
+  "devDependencies": {
+    "lerna": "^3.13.1"
+  },
+  "dependencies": {
+    "@types/node": "^12.12.21",
+    "@types/request": "^2.48.4",
+    "request": "^2.88.0",
+    "ts-node": "^8.5.4",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^3.7.4"
+  }
+}
