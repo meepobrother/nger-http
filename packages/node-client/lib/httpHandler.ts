@@ -1,9 +1,9 @@
-import { HttpHandler, HttpEvent, HttpRequest, HttpHeaders, HttpResponse, HttpJsonParseError, HttpParams } from "@nger/http";
+import { HttpBackend, HttpEvent, HttpRequest, HttpHeaders, HttpResponse, HttpJsonParseError, HttpParams } from "@nger/http";
 import { Observable } from 'rxjs';
 import request, { Response } from 'request';
 import { parse } from 'content-type';
 const XSSI_PREFIX = /^\)\]\}',?\n/;
-export class NodeHttpHandler extends HttpHandler {
+export class NodeClientHttpBackend extends HttpBackend {
     handle(req: HttpRequest<any>): Observable<HttpEvent<any>> {
         let headers: any = {};
         req.headers.forEach((name, value) => {
@@ -17,9 +17,10 @@ export class NodeHttpHandler extends HttpHandler {
             });
         }
         const paramsStr = params.toString();
+        const _url = `${url.protocol}//${url.username ? `${url.username}:${url.password}@` : ''}${url.hostname}:${url.port}${url.pathname}?${paramsStr}${url.hash ? `#${url.hash}` : ""}`;
         return new Observable((obser) => {
             request({
-                url: url.origin + `?${paramsStr}`,
+                url: _url,
                 host: url.host,
                 port: parseInt(url.port),
                 method: req.method,

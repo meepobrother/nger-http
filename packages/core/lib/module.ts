@@ -24,7 +24,8 @@ export class HttpInterceptingHandler implements HttpHandler {
     imports: [],
     providers: [
         HttpClient,
-        { provide: HTTP_INTERCEPTORS, useClass: NoopInterceptor, multi: true }
+        { provide: HTTP_INTERCEPTORS, useClass: NoopInterceptor, multi: true },
+        { provide: HttpHandler, useClass: HttpInterceptingHandler }
     ]
 })
-export class HttpClientModule { }
+export class HttpModule { }

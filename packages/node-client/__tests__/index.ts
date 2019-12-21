@@ -1,11 +1,11 @@
 import { HttpClient } from '@nger/http';
 import { corePlatform, Module, } from '@nger/core';
 import { writeFileSync } from 'fs';
-import { NodeHttpModule } from '../lib'
+import { NodeClientHttpModule } from '../lib'
 import { join } from 'path';
 @Module({
     imports: [
-        NodeHttpModule
+        NodeClientHttpModule
     ],
     providers: []
 })
@@ -13,7 +13,7 @@ export class AppModule { }
 
 corePlatform().bootstrapModule(AppModule).then(res => {
     const client = res.injector.get(HttpClient)
-    client.get(`http://localhost:3000?id=2&cid=4`, {
+    client.get(`http://imeepos:demo@localhost:3000/post?id=2&cid=4`, {
         params: {
             name: 'imeepos'
         },

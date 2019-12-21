@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@nger/core@^1.8.19":
+"@nger/core@^1.8.20":
   version "1.8.20"
   resolved "https://registry.yarnpkg.com/@nger/core/-/core-1.8.20.tgz#ecb8cd78889a05b934eb5a5687c092281baa5853"
   integrity sha512-olRiyOzzMKrGSO90URjST8qgzwRBhHCU9FpAPUfAPuGJf0tD74kWrmKSZy/R5pfhLeiON++SNaRZl9LLY5TgMg==
@@ -26,12 +26,12 @@
   dependencies:
     "@nger/decorator" "^1.1.12"
 
-"@nger/http@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@nger/http/-/http-1.0.0.tgz#18653ee7bf9d7c66a8656e3f7a98f226071552d8"
-  integrity sha512-KGA145O2vSNi9AbX4XbOiZ2Rzli6AwtjC/LUdVL9rHu3nN+EfK8RFh0mFRNKnIi01duewzsQAZLTpUQaFHPrcw==
+"@nger/http@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@nger/http/-/http-1.0.3.tgz#cecccc686c9034beeac48b47fa5631dfe44932a4"
+  integrity sha512-m5BUGAe2RXdmYgxzZ+sWfWFuyOJ1vmNE9CPoF3RFkKBep/bNpcXWnSWqBQOib5AT+feZLcnNs/ZUUqygdrJOCg==
   dependencies:
-    "@nger/core" "^1.8.19"
+    "@nger/core" "^1.8.20"
     rxjs "^6.5.3"
 
 "@types/caseless@*":
