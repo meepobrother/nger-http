@@ -1,11 +1,19 @@
-import { Module } from '@nger/core';
-import { HttpClientModule } from '@nger/http';
+import { Module, Injector } from '@nger/core';
+import { HttpModule, HttpBackend } from '@nger/http';
+import { NodeServerHttpBackend } from './httpHandler'
 @Module({
-    providers: [],
+    providers: [{
+        provide: HttpBackend,
+        useFactory: (injector: Injector) => new NodeServerHttpBackend(injector),
+        deps: [Injector]
+    }],
     imports: [
-        HttpClientModule
+        HttpModule
+    ],
+    exports: [
+        HttpModule
     ]
 })
-export class NodeServerModule {
+export class NodeServerHttpModule {
 
 }

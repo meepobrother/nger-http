@@ -1,6 +1,5 @@
 import { Observable } from 'rxjs';
-import { HttpRequest } from './request';
-import { HttpEvent } from './response';
+import { HttpRequest, HttpEvent } from '@nger/core';
 export abstract class HttpHandler {
     abstract handle(req: HttpRequest<any>): Observable<HttpEvent<any>>;
 }

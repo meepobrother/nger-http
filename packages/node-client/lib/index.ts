@@ -1,14 +1,17 @@
 import { Module } from '@nger/core';
-import { HttpBackend, HttpClientModule } from '@nger/http';
+import { HttpBackend, HttpModule } from '@nger/http';
 import { NodeClientHttpBackend } from './httpHandler';
 
 @Module({
     imports: [
-        HttpClientModule
+        HttpModule
     ],
     providers: [{
         provide: HttpBackend,
         useClass: NodeClientHttpBackend
-    }]
+    }],
+    exports: [
+        HttpModule
+    ]
 })
 export class NodeClientHttpModule { }

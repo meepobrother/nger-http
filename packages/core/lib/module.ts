@@ -1,10 +1,8 @@
-import { Injectable, Injector, NgModule } from '@nger/core';
+import { Injectable, Injector, NgModule, HttpRequest, HttpEvent } from '@nger/core';
 import { Observable } from 'rxjs';
 import { HttpBackend, HttpHandler } from './backend';
 import { HttpClient } from './client';
 import { HTTP_INTERCEPTORS, NoopInterceptor, HttpInterceptorHandler } from './interceptor';
-import { HttpRequest } from './request';
-import { HttpEvent } from './response';
 
 @Injectable()
 export class HttpInterceptingHandler implements HttpHandler {

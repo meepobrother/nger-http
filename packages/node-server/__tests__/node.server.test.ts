@@ -1,19 +1,36 @@
 import { HttpClient } from '@nger/http';
-import { corePlatform, Module, } from '@nger/core';
+import { corePlatform, Module, Query } from '@nger/core';
 import { writeFileSync } from 'fs';
-import { NodeClientHttpModule } from '../lib'
+import { NodeServerHttpModule } from '../lib'
 import { join } from 'path';
+
+import { Controller, Get } from '@nger/core'
+
+@Controller()
+export class DemoController {
+    @Get(``)
+    getHome() {
+        return `welcome to nger home!`
+    }
+
+    @Get(`user`)
+    getUser(@Query(`id`) id: number) {
+        return `welcome to user home! ${id}`
+    }
+}
 @Module({
     imports: [
-        NodeClientHttpModule
+        NodeServerHttpModule
     ],
-    providers: []
+    providers: [],
+    controllers: [DemoController]
 })
 export class AppModule { }
 
 corePlatform().bootstrapModule(AppModule).then(res => {
+    debugger;
     const client = res.get(HttpClient)
-    client.get(`http://baidu.com`, {
+    client.get(`/user?id=2`, {
         params: {
             name: 'imeepos'
         },

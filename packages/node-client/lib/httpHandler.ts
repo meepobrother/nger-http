@@ -1,4 +1,5 @@
-import { HttpBackend, HttpEvent, HttpRequest, HttpHeaders, HttpResponse, HttpJsonParseError, HttpParams } from "@nger/http";
+import { HttpBackend, } from "@nger/http";
+import { HttpEvent, HttpRequest, HttpHeaders, HttpResponse, HttpJsonParseError, HttpParams } from '@nger/core';
 import { Observable } from 'rxjs';
 import request, { Response } from 'request';
 import { parse } from 'content-type';
@@ -28,7 +29,7 @@ export class NodeClientHttpBackend extends HttpBackend {
                 body: req.body,
                 gzip: true,
             }, (err: Error, res: Response, body: any) => {
-                if (err) obser.error(err);
+                if (err) return obser.error(err);
                 const headers = res.headers;
                 let responseType = req.responseType;
                 if (headers[`content-type`]) {

@@ -6,15 +6,10 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import { Injectable } from '@nger/core';
+import { Injectable, HttpHeaders, HttpParams, HttpParamsOptions, HttpRequest, HttpEvent, HttpResponse } from '@nger/core';
 import { Observable, of } from 'rxjs';
 import { concatMap, filter, map } from 'rxjs/operators';
-
 import { HttpHandler } from './backend';
-import { HttpHeaders } from './headers';
-import { HttpParams, HttpParamsOptions } from './params';
-import { HttpRequest } from './request';
-import { HttpEvent, HttpResponse } from './response';
 
 
 /**
