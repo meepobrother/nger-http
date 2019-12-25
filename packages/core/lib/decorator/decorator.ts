@@ -3,46 +3,46 @@ import { UsePipes } from '@nger/core';
 /**
  * http
  */
-export const HeaderMetadataKey = `HeaderMetadataKey`
+export const HeaderMetadataKey = `@nger/http HeaderMetadataKey`
 export interface Header {
     [key: string]: string
 }
 export const Header = createMethodDecorator<Header>(HeaderMetadataKey);
-export const HttpCodeMetadataKey = `HttpCodeMetadataKey`
+export const HttpCodeMetadataKey = `@nger/http HttpCodeMetadataKey`
 export const HttpCode = createMethodDecorator<number>(HttpCodeMetadataKey);
 export interface Redirect {
     url: string;
     code?: number;
 }
-export const RedirectMetadataKey = `RedirectMetadataKey`
+export const RedirectMetadataKey = `@nger/http RedirectMetadataKey`
 export const Redirect = createMethodDecorator<Redirect>(RedirectMetadataKey);
-export const RenderMetadataKey = `RenderMetadataKey`
+export const RenderMetadataKey = `@nger/http RenderMetadataKey`
 export const Render = createMethodDecorator<string>(RenderMetadataKey);
 /**
  * http params
  */
-export const RequestMetadataKey = `RequestMetadataKey`
+export const RequestMetadataKey = `@nger/http RequestMetadataKey`
 interface Request { }
 export const Req = createParameterDecorator<Request>(RequestMetadataKey)
-export const ResponseMetadataKey = `ResponseMetadataKey`
+export const ResponseMetadataKey = `@nger/http ResponseMetadataKey`
 interface Response { }
 export const Res = createParameterDecorator<Response>(ResponseMetadataKey)
 
-export const NextMetadataKey = `NextMetadataKey`
+export const NextMetadataKey = `@nger/http NextMetadataKey`
 interface Next { }
 export const Next = createParameterDecorator<Next>(NextMetadataKey)
-export const IpMetadataKey = `IpMetadataKey`
+export const IpMetadataKey = `@nger/http IpMetadataKey`
 interface Ip { }
 export const Ip = createParameterDecorator<Ip>(IpMetadataKey)
-export const SessionMetadataKey = `SessionMetadataKey`
+export const SessionMetadataKey = `@nger/http SessionMetadataKey`
 interface Session { }
 export const Session = createParameterDecorator<Session>(SessionMetadataKey)
-export const CookiesMetadataKey = `CookiesMetadataKey`
+export const CookiesMetadataKey = `@nger/http CookiesMetadataKey`
 interface Cookies { }
 export const Cookies = createParameterDecorator<Cookies>(CookiesMetadataKey)
-export const UploadedFileMetadataKey = `UploadedFileMetadataKey`
+export const UploadedFileMetadataKey = `@nger/http UploadedFileMetadataKey`
 export const UploadedFile = createParameterDecorator<string>(UploadedFileMetadataKey)
-export const UploadedFilesMetadataKey = `UploadedFilesMetadataKey`
+export const UploadedFilesMetadataKey = `@nger/http UploadedFilesMetadataKey`
 interface UploadedFiles { }
 export interface WithPipesOptions extends UsePipes {
     property: string;
@@ -62,17 +62,17 @@ const withPipesOptionsHandler = (it: IParameterDecorator<any, WithPipesOptions |
     }
 }
 // http headers
-export const HeadersMetadataKey = `HeadersMetadataKey`
+export const HeadersMetadataKey = `@nger/http HeadersMetadataKey`
 export const Headers = createParameterDecorator<WithPipesOptions | string>(HeadersMetadataKey, withPipesOptionsHandler)
 // http query and graphql query
-export const QueryMetadataKey = `QueryMetadataKey`
+export const QueryMetadataKey = `@nger/http QueryMetadataKey`
 export const Query = createDecorator<WithPipesOptions | string>(QueryMetadataKey, withPipesOptionsHandler)
 // http post body
-export const BodyMetadataKey = `BodyMetadataKey`
+export const BodyMetadataKey = `@nger/http BodyMetadataKey`
 export const Body = createParameterDecorator<WithPipesOptions | string>(BodyMetadataKey, withPipesOptionsHandler)
 // http path param
-export const ParamMetadataKey = `ParamMetadataKey`
+export const ParamMetadataKey = `@nger/http ParamMetadataKey`
 export const Param = createParameterDecorator<WithPipesOptions | string>(ParamMetadataKey, withPipesOptionsHandler)
 // args
-export const ArgsMetadataKey = `ParamMetadataKey`
+export const ArgsMetadataKey = `@nger/http ParamMetadataKey`
 export const Args = createParameterDecorator<WithPipesOptions | string>(ArgsMetadataKey, withPipesOptionsHandler)

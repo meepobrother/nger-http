@@ -27,24 +27,24 @@ function httpMethodHandler(it: IMethodDecorator<any, HttpMethodOptions | string>
 export function isHttpMethodOptions(val: any): val is HttpMethodOptions {
     return val && typeof val.path === 'string'
 }
-export const GetMetadataKey = `GetMetadataKey`
+export const GetMetadataKey = `@nger/http GetMetadataKey`
 export interface GetOptions extends HttpMethodOptions { }
 export const Get = createMethodDecorator<GetOptions | string>(GetMetadataKey, httpMethodHandler);
-export const PostMetadataKey = `PostMetadataKey`
+export const PostMetadataKey = `@nger/http PostMetadataKey`
 export interface PostOptions extends HttpMethodOptions { }
 export const Post = createMethodDecorator<PostOptions | string>(PostMetadataKey, httpMethodHandler);
-export const AllMetadataKey = `AllMetadataKey`
+export const AllMetadataKey = `@nger/http AllMetadataKey`
 export interface AllOptions extends HttpMethodOptions { }
 export const All = createMethodDecorator<AllOptions | string>(AllMetadataKey, httpMethodHandler);
-export const DeleteMetadataKey = `DeleteMetadataKey`
+export const DeleteMetadataKey = `@nger/http DeleteMetadataKey`
 export interface DeleteOptions extends HttpMethodOptions { }
 export const Delete = createMethodDecorator<DeleteOptions | string>(DeleteMetadataKey, httpMethodHandler);
-export const PatchMetadataKey = `PatchMetadataKey`
+export const PatchMetadataKey = `@nger/http PatchMetadataKey`
 export interface PatchOptions extends HttpMethodOptions { }
 export const Patch = createMethodDecorator<PatchOptions | string>(PatchMetadataKey, httpMethodHandler);
-export const OptionsMetadataKey = `OptionsMetadataKey`
+export const OptionsMetadataKey = `@nger/http OptionsMetadataKey`
 export interface OptionsOptions extends HttpMethodOptions { }
 export const Options = createMethodDecorator<OptionsOptions | string>(OptionsMetadataKey, httpMethodHandler);
-export const HeadMetadataKey = `HeadMetadataKey`;
+export const HeadMetadataKey = `@nger/http HeadMetadataKey`;
 export interface HeadOptions extends HttpMethodOptions { }
 export const Head = createMethodDecorator<HeadOptions | string>(HeadMetadataKey, httpMethodHandler);
