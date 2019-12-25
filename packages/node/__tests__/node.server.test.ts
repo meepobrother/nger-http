@@ -1,4 +1,4 @@
-import { HttpClient } from '@nger/http';
+import { HttpClient, HttpModule } from '@nger/http';
 import { corePlatform, Module, Query } from '@nger/core';
 import { writeFileSync } from 'fs';
 import { HttpNodeModule } from '../lib'
@@ -20,7 +20,8 @@ export class DemoController {
 }
 @Module({
     imports: [
-        HttpNodeModule
+        HttpNodeModule,
+        HttpModule
     ],
     providers: [],
     controllers: [DemoController]
@@ -28,9 +29,8 @@ export class DemoController {
 export class AppModule { }
 
 corePlatform().bootstrapModule(AppModule).then(res => {
-    debugger;
     const client = res.get(HttpClient)
-    client.get(`/user?id=2`, {
+    client.get(`http://baidu.com/user?id=2`, {
         params: {
             name: 'imeepos'
         },

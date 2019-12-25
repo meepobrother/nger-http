@@ -1,9 +1,10 @@
 import { HttpBackend, } from "@nger/http";
-import { HttpEvent, HttpRequest, HttpHeaders, HttpResponse, HttpJsonParseError, HttpParams } from '@nger/core';
+import { HttpEvent, HttpRequest, HttpHeaders, HttpResponse, HttpJsonParseError, HttpParams, Injectable } from '@nger/core';
 import { Observable } from 'rxjs';
 import request, { Response } from 'request';
 import { parse } from 'content-type';
 const XSSI_PREFIX = /^\)\]\}',?\n/;
+@Injectable()
 export class NodeHttpRequest extends HttpBackend {
     handle(req: HttpRequest<any>): Observable<HttpEvent<any>> {
         let headers: any = {};

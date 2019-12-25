@@ -1,11 +1,13 @@
 import { HttpBackend } from "@nger/http";
 import {
-    HttpEvent, HttpRequest, HttpParams, Injector, ROUTES, HttpEventType, HttpResponse,
-    HttpHeaders, REQUEST, RESPONSE, isPromise, isObservable
+    HttpEvent, HttpRequest, HttpParams, Injector, ROUTES, HttpResponse,
+    HttpHeaders, REQUEST, RESPONSE, isPromise, isObservable, Injectable
 } from '@nger/core'
 import { Observable } from 'rxjs';
 import UrlPattern from 'url-pattern';
 import { parse, ParsedQuery } from 'query-string';
+import { createURL } from "./util";
+@Injectable()
 export class NodeHttpBackend extends HttpBackend {
     constructor(public injector: Injector) {
         super();
@@ -18,14 +20,9 @@ export class NodeHttpBackend extends HttpBackend {
         });
         let options: ParsedQuery = {}
         let urlString: string = req.url;
-        let _uri!: URL;
-        if (!urlString.startsWith('http')) {
-            urlString = `http://localhost${urlString}`
-            _uri = new URL(urlString);
-        }
         if (urlString.startsWith('http')) {
             const splits = urlString.split(`?`)
-            const str = splits.pop()
+            const str = splits.pop();
             options = parse(str!, { arrayFormat: 'comma' });
         }
         else if (urlString.startsWith('/')) {
@@ -49,7 +46,6 @@ export class NodeHttpBackend extends HttpBackend {
             params = params.set(key, val)
         });
         req = req.clone({
-            url: `${_uri.origin}${_uri.pathname}`,
             params
         });
         const res = new HttpResponse<any>({
@@ -65,12 +61,14 @@ export class NodeHttpBackend extends HttpBackend {
             provide: RESPONSE,
             useValue: res
         }])
+        let _uri: URL = createURL(urlString);
+        const pathname = _uri.pathname;
         return new Observable((obser) => {
             const routes = that.injector.get(ROUTES)
             routes && routes.map(route => {
                 if (route.method === req.method || route.method === 'ALL') {
                     const urlPattern = new UrlPattern(route.path)
-                    const path = urlPattern.match(`${getPath(_uri.pathname)}`)
+                    const path = urlPattern.match(`${getPath(pathname)}`);
                     if (path) {
                         const r = route.factory();
                         handlerResult(r, obser, res, true)
