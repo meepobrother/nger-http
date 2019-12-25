@@ -1,9 +1,8 @@
-import { HttpClient, HttpModule } from '@nger/http';
-import { corePlatform, Module, Query } from '@nger/core';
+import { HttpClient, HttpModule, Query, Get } from '@nger/http';
+import { corePlatform, Module, Controller } from '@nger/core';
 import { writeFileSync } from 'fs';
 import { HttpNodeModule } from '../lib'
 import { join } from 'path';
-import { Controller, Get } from '@nger/core'
 
 @Controller()
 export class DemoController {

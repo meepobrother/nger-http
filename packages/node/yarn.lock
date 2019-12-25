@@ -25,10 +25,10 @@
   dependencies:
     "@nger/decorator" "^1.1.12"
 
-"@nger/http@^1.0.12":
-  version "1.0.12"
-  resolved "https://registry.yarnpkg.com/@nger/http/-/http-1.0.12.tgz#1afdb7a964c9b41899ac2c8dc3fdc291a4f07720"
-  integrity sha512-PDBrm4e+a9sTNJcHXNaLiAZB3mZG0zGUk+ubpm6dQN4+zNHT4piAn3q0FbRfXL0+xV5yACzdQnH4LwDKBKhYFQ==
+"@nger/http@^1.0.13":
+  version "1.0.13"
+  resolved "https://registry.yarnpkg.com/@nger/http/-/http-1.0.13.tgz#e03d88e2f53b889487a1899be15c1b7bc9937379"
+  integrity sha512-rNx9w5LReTZShXEJJffAf9u0tgtVl6JRqKtp82MsfVzCTaCjVfDFhcCXJ4xjXkDUxiDaJ4lR5bXsCEL397F0LQ==
   dependencies:
     "@nger/core" "^1.8.42"
     rxjs "^6.5.3"
