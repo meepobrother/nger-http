@@ -1,7 +1,7 @@
 import { HttpClient } from '@nger/http';
 import { corePlatform, Module, Query } from '@nger/core';
 import { writeFileSync } from 'fs';
-import { NodeServerHttpModule } from '../lib'
+import { HttpNodeModule } from '../lib'
 import { join } from 'path';
 
 import { Controller, Get } from '@nger/core'
@@ -20,7 +20,7 @@ export class DemoController {
 }
 @Module({
     imports: [
-        NodeServerHttpModule
+        HttpNodeModule
     ],
     providers: [],
     controllers: [DemoController]

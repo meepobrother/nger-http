@@ -6,7 +6,7 @@ import {
 import { Observable } from 'rxjs';
 import UrlPattern from 'url-pattern';
 import { parse, ParsedQuery } from 'query-string';
-export class NodeServerHttpBackend extends HttpBackend {
+export class NodeHttpBackend extends HttpBackend {
     constructor(public injector: Injector) {
         super();
     }

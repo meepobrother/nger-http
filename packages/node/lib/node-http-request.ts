@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import request, { Response } from 'request';
 import { parse } from 'content-type';
 const XSSI_PREFIX = /^\)\]\}',?\n/;
-export class NodeClientHttpBackend extends HttpBackend {
+export class NodeHttpRequest extends HttpBackend {
     handle(req: HttpRequest<any>): Observable<HttpEvent<any>> {
         let headers: any = {};
         req.headers.forEach((name, value) => {
