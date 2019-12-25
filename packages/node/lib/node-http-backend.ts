@@ -1,7 +1,7 @@
-import { HttpBackend } from "@nger/http";
+import { HttpBackend, ROUTES, REQUEST, RESPONSE } from "@nger/http";
 import {
-    HttpEvent, HttpRequest, HttpParams, Injector, ROUTES, HttpResponse,
-    HttpHeaders, REQUEST, RESPONSE, isPromise, isObservable, Injectable
+    HttpEvent, HttpRequest, HttpParams, Injector, HttpResponse,
+    HttpHeaders, isPromise, isObservable, Injectable
 } from '@nger/core'
 import { Observable } from 'rxjs';
 import UrlPattern from 'url-pattern';

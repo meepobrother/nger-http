@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@nger/core@^1.8.40":
-  version "1.8.40"
-  resolved "https://registry.yarnpkg.com/@nger/core/-/core-1.8.40.tgz#3708c321f791d483b4c1e7843ec313d0263c6315"
-  integrity sha512-WSa0Yf74SyvkBwn/rE4veSOY3tPwg+B/hD9I/0EVaa0fX8nvap5k9NgRkegHPZLaC/lsdFhyLWsMWCUJi0/obQ==
+"@nger/core@^1.8.42":
+  version "1.8.42"
+  resolved "https://registry.yarnpkg.com/@nger/core/-/core-1.8.42.tgz#809e51076b5663495b4c4f060fa0c84ce1ec9d56"
+  integrity sha512-2A0WD4ar7hv1xOvGbf7HxbqrDluoC04YtmLu7POYoKoqEXn377CqxZ/T0pDlp7JfmAuUamV8BG835JbBgXy4pw==
   dependencies:
     "@nger/decorator" "^1.1.12"
     "@nger/di" "^1.5.26"
@@ -25,12 +25,12 @@
   dependencies:
     "@nger/decorator" "^1.1.12"
 
-"@nger/http@^1.0.10":
-  version "1.0.10"
-  resolved "https://registry.yarnpkg.com/@nger/http/-/http-1.0.10.tgz#e056db71859896bce261c952546db915935becdf"
-  integrity sha512-HZQIdrIIwf7QoGODPyPM0+ik8zvyddABMvT33KXNO5VKe39IUvj/jIJHXD3dJXr2boAm4byO3ZfaEtsUhpNunw==
+"@nger/http@^1.0.12":
+  version "1.0.12"
+  resolved "https://registry.yarnpkg.com/@nger/http/-/http-1.0.12.tgz#1afdb7a964c9b41899ac2c8dc3fdc291a4f07720"
+  integrity sha512-PDBrm4e+a9sTNJcHXNaLiAZB3mZG0zGUk+ubpm6dQN4+zNHT4piAn3q0FbRfXL0+xV5yACzdQnH4LwDKBKhYFQ==
   dependencies:
-    "@nger/core" "^1.8.40"
+    "@nger/core" "^1.8.42"
     rxjs "^6.5.3"
 
 "@types/content-type@^1.1.3":
