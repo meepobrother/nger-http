@@ -1,6 +1,6 @@
 {
   "name": "@nger/http-express",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "> TODO: description",
   "author": "m18317252500 <m18317252500_1@163.com>",
   "homepage": "https://github.com/meepobrother/nger-http#readme",
@@ -17,6 +17,10 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/meepobrother/nger-http.git"
+  },
+  "publishConfig": {
+    "registry": "http://registry.npmjs.org/",
+    "access": "public"
   },
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1"
