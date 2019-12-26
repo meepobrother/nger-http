@@ -7,7 +7,7 @@ import { deleteHandler } from './methods/delete'
 import { patchHandler } from './methods/patch'
 import { optionsHandler } from './methods/options'
 import { headHandler } from './methods/head'
-
+import { headerHandler } from './methods/header'
 export const handlers: StaticProvider[] = [
     getHandler,
     postHandler,
@@ -16,6 +16,7 @@ export const handlers: StaticProvider[] = [
     patchHandler,
     optionsHandler,
     headHandler,
+    headerHandler,
     ...parametersHandler
 ]
 export * from './methods/error';

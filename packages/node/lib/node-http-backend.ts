@@ -14,10 +14,6 @@ export class NodeHttpBackend extends HttpBackend {
     }
     handle(req: HttpRequest<any>): Observable<HttpEvent<any>> {
         const that = this;
-        let headers: any = {};
-        req.headers.forEach((name, value) => {
-            Reflect.set(headers, name, value.length === 1 ? value[0] : value)
-        });
         let options: ParsedQuery = {}
         let urlString: string = req.url;
         if (urlString.startsWith('http')) {
@@ -52,7 +48,7 @@ export class NodeHttpBackend extends HttpBackend {
             status: 200,
             statusText: "OK",
             url: req.url,
-            headers: headers
+            headers: new HttpHeaders()
         });
         this.injector.getInjector('root').setStatic([{
             provide: REQUEST,

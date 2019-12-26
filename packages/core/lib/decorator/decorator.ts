@@ -4,10 +4,10 @@ import { UsePipes } from '@nger/core';
  * http
  */
 export const HeaderMetadataKey = `@nger/http HeaderMetadataKey`
-export interface Header {
+export interface HeaderOptions {
     [key: string]: string
 }
-export const Header = createMethodDecorator<Header>(HeaderMetadataKey);
+export const Header = createMethodDecorator<HeaderOptions>(HeaderMetadataKey);
 export const HttpCodeMetadataKey = `@nger/http HttpCodeMetadataKey`
 export const HttpCode = createMethodDecorator<number>(HttpCodeMetadataKey);
 export interface Redirect {

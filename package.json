@@ -5,6 +5,7 @@
     "lerna": "^3.13.1"
   },
   "dependencies": {
+    "@nger/http-node": "^1.0.13",
     "@types/node": "^12.12.21",
     "@types/request": "^2.48.4",
     "request": "^2.88.0",
