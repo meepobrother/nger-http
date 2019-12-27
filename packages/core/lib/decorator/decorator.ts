@@ -37,9 +37,6 @@ export const Ip = createParameterDecorator<Ip>(IpMetadataKey)
 export const SessionMetadataKey = `@nger/http SessionMetadataKey`
 interface Session { }
 export const Session = createParameterDecorator<Session>(SessionMetadataKey)
-export const CookiesMetadataKey = `@nger/http CookiesMetadataKey`
-interface Cookies { }
-export const Cookies = createParameterDecorator<Cookies>(CookiesMetadataKey)
 export const UploadedFileMetadataKey = `@nger/http UploadedFileMetadataKey`
 export const UploadedFile = createParameterDecorator<string>(UploadedFileMetadataKey)
 export const UploadedFilesMetadataKey = `@nger/http UploadedFilesMetadataKey`
