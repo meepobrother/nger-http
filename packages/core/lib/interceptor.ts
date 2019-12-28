@@ -1,6 +1,7 @@
-import { Injectable, InjectionToken, HttpRequest, HttpEvent } from '@nger/core';
+import { Injectable, InjectionToken } from '@nger/core';
 import { Observable } from 'rxjs';
 import { HttpHandler } from './backend';
+import { HttpRequest, HttpEvent } from './http'
 export interface HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>;
 }

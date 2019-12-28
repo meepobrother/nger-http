@@ -1,5 +1,5 @@
-import { HttpInterceptor, HttpHandler } from '@nger/http';
-import { HttpRequest, HttpEvent, Injectable } from '@nger/core';
+import { HttpInterceptor, HttpHandler, HttpRequest, HttpEvent, } from '@nger/http';
+import { Injectable } from '@nger/core';
 import { Observable } from 'rxjs';
 import { NodeHttpRequest } from './node-http-request';
 @Injectable()

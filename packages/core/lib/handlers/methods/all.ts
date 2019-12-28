@@ -1,9 +1,9 @@
-import { StaticProvider, Injector, ControllerOptions } from "@nger/core";
+import { StaticProvider } from "@nger/core";
 import { AllOptions, AllMetadataKey } from "../../decorator";
-import { IMethodDecorator, IClassDecorator } from "@nger/decorator";
 import { createHandler } from "./util";
-const handler = (injector: Injector, item: IMethodDecorator<any, AllOptions>, parent: IClassDecorator<any, ControllerOptions>, path: string) => {
-    return createHandler(injector, item, path)('ALL')
+import { MethodRef } from '@nger/di'
+const handler = (it: MethodRef<any, AllOptions>) => {
+    return createHandler(it, it.parent.metadata.options)('ALL')
 }
 export const allHandler: StaticProvider = {
     provide: AllMetadataKey,

@@ -6,11 +6,11 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import { Injectable, HttpHeaders, HttpParams, HttpParamsOptions, HttpRequest, HttpEvent, HttpResponse } from '@nger/core';
+import { Injectable } from '@nger/core';
 import { Observable, of } from 'rxjs';
 import { concatMap, filter, map } from 'rxjs/operators';
 import { HttpHandler } from './backend';
-
+import { HttpHeaders, HttpParams, HttpParamsOptions, HttpRequest, HttpEvent, HttpResponse } from './http'
 
 /**
  * Constructs an instance of `HttpRequestOptions<T>` from a source `HttpMethodOptions` and

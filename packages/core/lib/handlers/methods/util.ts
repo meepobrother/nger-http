@@ -1,53 +1,25 @@
-import { ROUTES, LOGGER_METHOD_NAME, LOGGER_MODULE_CHAIN } from "./../../token";
-import { Injector, isCanLoad } from "@nger/core";
-import { IMethodDecorator } from "@nger/decorator";
-import { GuardError } from "./error";
-import { } from "../../token";
+import { ROUTES } from "./../../token";
+import { Injector, ControllerOptions, MethodRef } from "@nger/core";
 export function createHandler(
-  injector: Injector,
-  item: IMethodDecorator,
-  path: string
+  item: MethodRef<any, any>,
+  options: ControllerOptions
 ) {
-
+  const path = options.path;
   return (method: string) => {
-    const options = item.options;
+    const options = item.metadata.options;
     if (options) {
-      const platformInjector = injector.getInjector("platform");
-      platformInjector.setStatic([
-        {
-          provide: LOGGER_METHOD_NAME,
-          useValue: item.property
-        },
-        {
-          provide: LOGGER_MODULE_CHAIN,
-          useValue: getNameChain(injector)
-        },
+      item.injector.getInjector('root').setStatic([
         {
           provide: ROUTES,
           useFactory: () => {
-            const instance = injector.get(item.type);
-            const methodHandler = Reflect.get(instance, item.property);
             return {
               method: method,
               path: `${path}${options.path}`,
-              factory: () => {
-                const pass = (options.useGuards || [])
-                  .map((it: any) => injector.get(it))
-                  .every((it: any) => {
-                    if (isCanLoad(it)) {
-                      return it.canLoad(injector);
-                    }
-                    return true;
-                  });
-                // const req = injector.get(REQUEST);
-                if (pass) return methodHandler();
-                throw new GuardError();
-              }
+              factory: item.call.bind(item)
             };
           },
           deps: [],
-          multi: true,
-          noCache: true
+          multi: true
         }
       ]);
     }

@@ -1,11 +1,10 @@
 import { stringify, Injector, Injectable, PLATFORM_NAME, Logger } from "@nger/core";
 import {
   PRE_LOGGER_ID,
-  LOGGER_MODULE_CHAIN,
-  LOGGER_METHOD_NAME,
   LOGGER_LAST_TIME
-} from "./token";
+} from "@nger/http";
 import { REQUEST_ID } from "@nger/http";
+import { createCid } from "./util";
 
 @Injectable()
 export class LoggerImpl extends Logger {
@@ -22,29 +21,31 @@ export class LoggerImpl extends Logger {
    */
   requestId: string;
   /**
-   * 服务名
-   */
-  platformName: string;
-  /**
    * 模块链
    */
-  moduleChain: string;
-  /**
-   * 方法名称
-   */
-  methodName: string;
+  chain: string;
   /**
    * 上次打印时间
    */
   lastTime: number;
   constructor(injector: Injector) {
     super();
-    this.preLoggerId = injector.get(PRE_LOGGER_ID);
-    this.requestId = injector.get<string>(REQUEST_ID);
-    this.platformName = injector.get<string>(PLATFORM_NAME);
-    this.moduleChain = injector.get<string>(LOGGER_MODULE_CHAIN);
-    this.methodName = injector.get<string>(LOGGER_METHOD_NAME);
-    this.lastTime = injector.get<number>(LOGGER_LAST_TIME);
+    this.preLoggerId = injector.get(PRE_LOGGER_ID, ``);
+    this.requestId = injector.get<string>(REQUEST_ID, ``);
+    const platformName = injector.get<string>(PLATFORM_NAME, ``);
+    this.chain = `${platformName}.${getInjectorChain(injector).join('.')}`;
+    this.loggerId = createCid(JSON.stringify({
+      preLoggerId: this.preLoggerId,
+      requestId: this.requestId,
+      chain: this.chain
+    }));
+    injector.setStatic([{
+      provide: LOGGER_LAST_TIME,
+      useValue: new Date().getTime()
+    }, {
+      provide: PRE_LOGGER_ID,
+      useValue: this.loggerId
+    }]);
   }
   log(msg: any, ...args: any[]) {
     msg = stringify(msg);
@@ -70,4 +71,14 @@ export class LoggerImpl extends Logger {
     msg = stringify(msg);
     console.log(msg, this);
   }
+}
+
+function getInjectorChain(injector: Injector): string[] {
+  let chain: string[] = [];
+  if (injector.scope === 'root') return chain;
+  if (injector.parent) {
+    chain.push(...getInjectorChain(injector.parent))
+  }
+  chain.push(injector.source || '')
+  return chain;
 }

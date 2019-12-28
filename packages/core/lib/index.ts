@@ -4,3 +4,4 @@ export * from './interceptor';
 export * from './module';
 export * from './token';
 export * from './decorator';
+export * from './http'

@@ -1,12 +1,12 @@
-import { LoggerImpl } from './logger';
 import {
     Injectable,
     Injector,
-    NgModule,
-    HttpRequest,
-    HttpEvent,
-    Logger
+    NgModule
 } from "@nger/core";
+import {
+    HttpRequest,
+    HttpEvent
+} from './http';
 import { Observable } from "rxjs";
 import { HttpBackend, HttpHandler } from "./backend";
 import { HttpClient } from "./client";
@@ -37,12 +37,7 @@ export class HttpInterceptingHandler implements HttpHandler {
         ...handlers,
         HttpClient,
         { provide: HTTP_INTERCEPTORS, useClass: NoopInterceptor, multi: true },
-        { provide: HttpHandler, useClass: HttpInterceptingHandler },
-        {
-            provide: Logger,
-            useFactory: (injector: Injector) => new LoggerImpl(injector),
-            deps: [Injector]
-        }
+        { provide: HttpHandler, useClass: HttpInterceptingHandler }
     ]
 })
 export class HttpModule { }

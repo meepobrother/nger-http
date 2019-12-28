@@ -5,23 +5,25 @@ import {
   RESPONSE,
   REQUEST_ID,
   PRE_LOGGER_ID,
-  LOGGER_LAST_TIME
-} from "@nger/http";
-import {
+  LOGGER_LAST_TIME,
+  HttpResponse,
+  HttpHeaders,
   HttpEvent,
   HttpRequest,
   HttpParams,
+} from "@nger/http";
+import {
   Injector,
-  HttpResponse,
-  HttpHeaders,
   isPromise,
   isObservable,
-  Injectable
+  Injectable,
+  Logger
 } from "@nger/core";
 import { Observable } from "rxjs";
 import UrlPattern from "url-pattern";
 import { parse, ParsedQuery } from "query-string";
 import { createURL, createCid } from "./util";
+import { LoggerImpl } from "./logger";
 @Injectable()
 export class NodeHttpBackend extends HttpBackend {
   constructor(public injector: Injector) {
@@ -66,7 +68,7 @@ export class NodeHttpBackend extends HttpBackend {
     req.headers.forEach((name, value) => {
       Reflect.set(headers, name, value);
     });
-    
+
     let _uri: URL = createURL(urlString);
     const pathname = _uri.pathname;
     return new Observable(obser => {
@@ -77,36 +79,37 @@ export class NodeHttpBackend extends HttpBackend {
             const urlPattern = new UrlPattern(route.path);
             const path = urlPattern.match(`${getPath(pathname)}`);
             if (path) {
-              this.injector.getInjector("root").setStatic([
-                {
-                  provide: REQUEST,
-                  useValue: req
-                },
-                {
-                  provide: RESPONSE,
-                  useValue: res
-                },
-                {
-                  provide: PRE_LOGGER_ID,
-                  useValue: req.headers.get("pre-logger-id") || ""
-                },
-                {
-                  provide: LOGGER_LAST_TIME,
-                  useValue: req.headers.get("logger-last-time") || new Date().getTime()
-                },
-                {
-                  provide: REQUEST_ID,
-                  useValue: createCid(
-                    JSON.stringify({
-                      body: req.body,
-                      params: req.toString(),
-                      url: req.url,
-                      headers: headers
-                    })
-                  )
-                }
-              ]);
-              const r = route.factory();
+              const r = route.factory([{
+                provide: Logger,
+                useClass: LoggerImpl,
+                deps: [Injector]
+              }, {
+                provide: REQUEST,
+                useValue: req
+              },
+              {
+                provide: RESPONSE,
+                useValue: res
+              },
+              {
+                provide: PRE_LOGGER_ID,
+                useValue: req.headers.get("pre-logger-id") || ""
+              },
+              {
+                provide: LOGGER_LAST_TIME,
+                useValue: req.headers.get("logger-last-time") || new Date().getTime()
+              },
+              {
+                provide: REQUEST_ID,
+                useFactory: () => req.headers.get("request-id") || createCid(
+                  JSON.stringify({
+                    body: req.body,
+                    params: req.toString(),
+                    url: req.url,
+                    headers: headers
+                  })
+                )
+              }]);
               handlerResult(r, obser, res, true);
             }
           }

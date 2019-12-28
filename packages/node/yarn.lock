@@ -2,12 +2,12 @@
 # yarn lockfile v1
 
 
-"@nger/core@^1.9.1":
-  version "1.9.1"
-  resolved "https://registry.yarnpkg.com/@nger/core/-/core-1.9.1.tgz#f135592080030c55463629a38131bf08dc93b62e"
-  integrity sha512-8RGqs3VqEep0DMumsqLfU3EIwRBK3g9EXUdAjkvsrpwbnoZFk4O2pKylnlOEfwO0TcKfSwojLIN/Ci0e5LIlBA==
+"@nger/core@^1.9.6":
+  version "1.9.7"
+  resolved "https://registry.yarnpkg.com/@nger/core/-/core-1.9.7.tgz#823ac72475aa7c404bfed748878cab0e361f0523"
+  integrity sha512-X9I2mUy8T9w7gaWI3Vd3RnIIjRthQOKCZfHRrhUuBNAkW2by2Lbmf1Pgd+G7tMJrp1w3AReWcVJG8adsSguZUw==
   dependencies:
-    "@nger/di" "^1.5.28"
+    "@nger/di" "^1.5.37"
     rxjs "^6.5.3"
 
 "@nger/decorator@^1.1.12":
@@ -17,19 +17,19 @@
   dependencies:
     reflect-metadata "^0.1.13"
 
-"@nger/di@^1.5.28":
-  version "1.5.28"
-  resolved "https://registry.yarnpkg.com/@nger/di/-/di-1.5.28.tgz#f5f1e195f5b5240ecbca02d44f816aaa6edbc50b"
-  integrity sha512-ZrtvxOlvT38lxmhz8wPh3/QmvzQGsvlAWjayeYTVq7dsS1LckjxhAnggMypftZgQUruTL3oO0ykbAzXO+I2JSA==
+"@nger/di@^1.5.37":
+  version "1.5.42"
+  resolved "https://registry.yarnpkg.com/@nger/di/-/di-1.5.42.tgz#5a4696ea96b81220b6eea5b50ffd0d48582346b9"
+  integrity sha512-6rKvECn4kQ5xUrQCcPfq0TgvKf0qbaOoavn+m/FcguzTN6ec3Lig6Pj7WxVM4/QNmfCZrd14HkCleG7WjfFJIQ==
   dependencies:
     "@nger/decorator" "^1.1.12"
 
-"@nger/http@^1.0.21":
-  version "1.0.21"
-  resolved "https://registry.yarnpkg.com/@nger/http/-/http-1.0.21.tgz#f3e538ebd968cd0dc68a80fb58ea942c9567a880"
-  integrity sha512-je9aJ3GdPI4i9DO3ttooeF+WXqerdGyvhik2vF6oTdD9ONrUKU2LM58EW+ZnWjhmJXHw+qMa+K1GRY+bu7nZJQ==
+"@nger/http@^1.0.28":
+  version "1.0.28"
+  resolved "https://registry.yarnpkg.com/@nger/http/-/http-1.0.28.tgz#a0075b423cf0eb6e8226cd26d26e30a4e4ebe0a9"
+  integrity sha512-Q75NTS9L1E1vRM1nFMReKmI9KlK/q+Yi6zTpqJmpkAAxuFuAMBvHGAhGe0K5Ewm3xgJ8gRDLe9fqNUBSHQrTPg==
   dependencies:
-    "@nger/core" "^1.9.1"
+    "@nger/core" "^1.9.6"
     rxjs "^6.5.3"
 
 "@types/caseless@*":
@@ -293,9 +293,9 @@ performance-now@^2.1.0:
   integrity sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=
 
 psl@^1.1.24:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/psl/-/psl-1.6.0.tgz#60557582ee23b6c43719d9890fb4170ecd91e110"
-  integrity sha512-SYKKmVel98NCOYXpkwUqZqh0ahZeeKfmisiLIcEZdsb+WbLv02g/dI5BUmZnIyOe7RzZtLax81nnb2HbvC2tzA==
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/psl/-/psl-1.7.0.tgz#f1c4c47a8ef97167dea5d6bbf4816d736e884a3c"
+  integrity sha512-5NsSEDv8zY70ScRnOTn7bK7eanl2MvFrOrS/R6x+dBt5g1ghnj9Zv90kO8GwT8gxcu2ANyFprnFYB85IogIJOQ==
 
 punycode@^1.4.1:
   version "1.4.1"

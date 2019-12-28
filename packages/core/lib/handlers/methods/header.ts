@@ -1,11 +1,10 @@
-import { StaticProvider, Injector, ControllerOptions } from "@nger/core";
-import { HeaderMetadataKey, HeaderOptions } from "../../decorator";
-import { IMethodDecorator, IClassDecorator } from "@nger/decorator";
+import { StaticProvider, MethodRef } from "@nger/core";
+import { HeaderMetadataKey } from "../../decorator";
 import { RESPONSE } from "../../token";
-const handler = (injector: Injector, item: IMethodDecorator<any, HeaderOptions>, parent: IClassDecorator<any, ControllerOptions>, path: string) => {
-    const options = item.options;
+const handler = (it: MethodRef<any, any>) => {
+    const options = it.options;
     if (options) {
-        const res = injector.get(RESPONSE)
+        const res = it.injector.get(RESPONSE)
         Object.keys(options).map((key: string) => {
             res.headers.set(key, Reflect.get(options, key))
         });

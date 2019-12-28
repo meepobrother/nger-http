@@ -1,4 +1,5 @@
-import { InjectionToken, HttpRequest, HttpResponse } from "@nger/core";
+import { InjectionToken, StaticProvider } from "@nger/core";
+import { HttpRequest, HttpResponse } from './http';
 /**
  * 请求id
  */
@@ -18,7 +19,7 @@ export const RESPONSE_HANDLER = new InjectionToken(`@nger/core RESPONSE_HANDLER`
 export interface Router {
     path: string;
     method: string;
-    factory: () => any;
+    factory: (providers: StaticProvider[]) => any;
 }
 export const ROUTES = new InjectionToken<Router[]>(`ROUTES`)
 

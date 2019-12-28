@@ -1,5 +1,5 @@
-import { HttpBackend, } from "@nger/http";
-import { HttpEvent, HttpRequest, HttpHeaders, HttpResponse, HttpJsonParseError, HttpParams, Injectable } from '@nger/core';
+import { HttpBackend, HttpEvent, HttpRequest, HttpHeaders, HttpResponse, HttpJsonParseError, HttpParams, } from "@nger/http";
+import { Injectable } from '@nger/core';
 import { Observable } from 'rxjs';
 import request, { Response } from 'request';
 import { parse } from 'content-type';

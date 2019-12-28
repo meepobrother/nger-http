@@ -6,7 +6,6 @@ export function createURL(urlString: string) {
     return new URL(urlString);
   }
 }
-import { Injector } from "@nger/core";
 import { createHash } from "crypto";
 export function createCid(str: string | Buffer): string {
   return createHash(`md5`)
