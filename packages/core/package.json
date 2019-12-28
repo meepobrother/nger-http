@@ -1,6 +1,6 @@
 {
     "name": "@nger/http",
-    "version": "1.0.16",
+    "version": "1.0.21",
     "description": "> TODO: description",
     "author": "imeepos <1037483576@qq.com>",
     "homepage": "https://github.com/meepobrother/nger-http#readme",
@@ -29,7 +29,7 @@
         "url": "https://github.com/meepobrother/nger-http/issues"
     },
     "dependencies": {
-        "@nger/core": "^1.8.42",
+        "@nger/core": "^1.9.1",
         "rxjs": "^6.5.3"
     }
 }

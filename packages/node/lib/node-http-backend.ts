@@ -1,4 +1,12 @@
-import { HttpBackend, ROUTES, REQUEST, RESPONSE, REQUEST_ID } from "@nger/http";
+import {
+  HttpBackend,
+  ROUTES,
+  REQUEST,
+  RESPONSE,
+  REQUEST_ID,
+  PRE_LOGGER_ID,
+  LOGGER_LAST_TIME
+} from "@nger/http";
 import {
   HttpEvent,
   HttpRequest,
@@ -58,27 +66,7 @@ export class NodeHttpBackend extends HttpBackend {
     req.headers.forEach((name, value) => {
       Reflect.set(headers, name, value);
     });
-    this.injector.getInjector("root").setStatic([
-      {
-        provide: REQUEST,
-        useValue: req
-      },
-      {
-        provide: RESPONSE,
-        useValue: res
-      },
-      {
-        provide: REQUEST_ID,
-        useValue: createCid(
-          JSON.stringify({
-            body: req.body,
-            params: req.toString(),
-            url: req.url,
-            headers: headers
-          })
-        )
-      }
-    ]);
+    
     let _uri: URL = createURL(urlString);
     const pathname = _uri.pathname;
     return new Observable(obser => {
@@ -89,6 +77,35 @@ export class NodeHttpBackend extends HttpBackend {
             const urlPattern = new UrlPattern(route.path);
             const path = urlPattern.match(`${getPath(pathname)}`);
             if (path) {
+              this.injector.getInjector("root").setStatic([
+                {
+                  provide: REQUEST,
+                  useValue: req
+                },
+                {
+                  provide: RESPONSE,
+                  useValue: res
+                },
+                {
+                  provide: PRE_LOGGER_ID,
+                  useValue: req.headers.get("pre-logger-id") || ""
+                },
+                {
+                  provide: LOGGER_LAST_TIME,
+                  useValue: req.headers.get("logger-last-time") || new Date().getTime()
+                },
+                {
+                  provide: REQUEST_ID,
+                  useValue: createCid(
+                    JSON.stringify({
+                      body: req.body,
+                      params: req.toString(),
+                      url: req.url,
+                      headers: headers
+                    })
+                  )
+                }
+              ]);
               const r = route.factory();
               handlerResult(r, obser, res, true);
             }

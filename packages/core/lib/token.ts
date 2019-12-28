@@ -21,3 +21,14 @@ export interface Router {
     factory: () => any;
 }
 export const ROUTES = new InjectionToken<Router[]>(`ROUTES`)
+
+
+// pre logger id
+export const PRE_LOGGER_ID = new InjectionToken<string>(`@nger/logger PRE_LOGGER_ID`)
+// last time
+export const LOGGER_LAST_TIME = new InjectionToken(`@nger/logger LOGGER_LAST_TIME`)
+// service name
+export const LOGGER_SERVICE_NAME = new InjectionToken(`@nger/logger LOGGER_SERVICE_NAME`)
+// method name
+export const LOGGER_METHOD_NAME = new InjectionToken(`@nger/logger LOGGER_METHOD_NAME`)
+export const LOGGER_MODULE_CHAIN = new InjectionToken(`@nger/logger LOGGER_MODULE_CHAIN`)
