@@ -1,4 +1,4 @@
-import { HttpBackend, ROUTES, REQUEST, RESPONSE } from "@nger/http";
+import { HttpBackend, ROUTES, REQUEST, RESPONSE, REQUEST_ID } from "@nger/http";
 import {
   HttpEvent,
   HttpRequest,
@@ -13,7 +13,7 @@ import {
 import { Observable } from "rxjs";
 import UrlPattern from "url-pattern";
 import { parse, ParsedQuery } from "query-string";
-import { createURL } from "./util";
+import { createURL, createCid } from "./util";
 @Injectable()
 export class NodeHttpBackend extends HttpBackend {
   constructor(public injector: Injector) {
@@ -54,6 +54,10 @@ export class NodeHttpBackend extends HttpBackend {
       url: req.url,
       headers: new HttpHeaders()
     });
+    const headers = {};
+    req.headers.forEach((name, value) => {
+      Reflect.set(headers, name, value);
+    });
     this.injector.getInjector("root").setStatic([
       {
         provide: REQUEST,
@@ -62,6 +66,17 @@ export class NodeHttpBackend extends HttpBackend {
       {
         provide: RESPONSE,
         useValue: res
+      },
+      {
+        provide: REQUEST_ID,
+        useValue: createCid(
+          JSON.stringify({
+            body: req.body,
+            params: req.toString(),
+            url: req.url,
+            headers: headers
+          })
+        )
       }
     ]);
     let _uri: URL = createURL(urlString);
@@ -82,7 +97,7 @@ export class NodeHttpBackend extends HttpBackend {
       obser.next(
         res.clone({
           status: 404,
-          statusText: "this function is developing..., please waite a minute!",
+          statusText: "this function is developing..., please waite a minute!"
         })
       );
       obser.complete();
