@@ -24,6 +24,7 @@ import UrlPattern from "url-pattern";
 import { parse, ParsedQuery } from "query-string";
 import { createURL, createCid } from "./util";
 import { LoggerImpl } from "./logger";
+import { parseurl } from './parseUrl'
 @Injectable()
 export class NodeHttpBackend extends HttpBackend {
   constructor(public injector: Injector) {
@@ -31,31 +32,20 @@ export class NodeHttpBackend extends HttpBackend {
   }
   handle(req: HttpRequest<any>): Observable<HttpEvent<any>> {
     const that = this;
-    let options: ParsedQuery = {};
-    let urlString: string = req.url;
-    if (urlString.startsWith("http")) {
-      const splits = urlString.split(`?`);
-      const str = splits.pop();
-      options = parse(str!, { arrayFormat: "comma" });
-    } else if (urlString.startsWith("/")) {
-      const splits = urlString.split(`?`);
-      const str = splits.pop();
-      options = parse(str!, { arrayFormat: "comma" });
-    } else if (urlString.startsWith("./")) {
-      const splits = urlString.split(`?`);
-      const str = splits.pop();
-      options = parse(str!, { arrayFormat: "comma" });
+    const url = parseurl(req.url)
+    let query: any;
+    if (typeof url.query === 'string') {
+      query = parse(url.query || '', { arrayFormat: "comma" })
     } else {
-      const splits = urlString.split(`?`);
-      const str = splits.pop();
-      options = parse(str!, { arrayFormat: "comma" });
+      query = url.query || {};
     }
     let params = req.params || new HttpParams();
-    Object.keys(options).map(key => {
-      const val = Reflect.get(options, key);
+    Object.keys(query).map(key => {
+      const val = Reflect.get(query, key);
       params = params.set(key, val);
     });
     req = req.clone({
+      url: url.pathname || '',
       params
     });
     const res = new HttpResponse<any>({
@@ -68,18 +58,14 @@ export class NodeHttpBackend extends HttpBackend {
     req.headers.forEach((name, value) => {
       Reflect.set(headers, name, value);
     });
-
-    let _uri: URL = createURL(urlString);
-    const pathname = _uri.pathname;
     return new Observable(obser => {
       const routes = that.injector.get(ROUTES, []);
       routes &&
         routes.map(route => {
           if (route.method === req.method || route.method === "ALL") {
-            const urlPattern = new UrlPattern(route.path);
-            const path = urlPattern.match(`${getPath(pathname)}`);
-            if (path) {
-              const r = route.factory([{
+            const match = route.match(req.url)
+            if (match) {
+              const result = route.handleRequest([{
                 provide: Logger,
                 useClass: LoggerImpl,
                 deps: [Injector]
@@ -109,8 +95,8 @@ export class NodeHttpBackend extends HttpBackend {
                     headers: headers
                   })
                 )
-              }]);
-              handlerResult(r, obser, res, true);
+              }])
+              handlerResult(result, obser, res, true);
             }
           }
         });

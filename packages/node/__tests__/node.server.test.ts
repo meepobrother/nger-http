@@ -1,4 +1,4 @@
-import { HttpClient, HttpModule, Query, Get } from '@nger/http';
+import { HttpClient, HttpModule, Query, Get, Param } from '@nger/http';
 import { PLATFORM_NAME, corePlatform, Module, Controller, Injector, Logger, Injectable } from '@nger/core';
 import { writeFileSync } from 'fs';
 import { HttpNodeModule } from '../lib'
@@ -25,11 +25,12 @@ export class DemoController {
     getHome() {
         return `welcome to nger home!`
     }
-    @Get(`user`)
-    getUser(@Query(`id`) id: number, @Query(`name`) name: string) {
+    @Get(`user/:uid`)
+    getUser(@Query(`id`) id: number, @Query(`name`) name: string, @Param(`uid`) uid: number) {
         const logger = this.logger
-        debugger;
-        return logger.info(`welcome to user home! ${id}-${name}`)
+        const msg = `welcome to user home! ${id}-${name}-${uid}`
+        logger.info(msg)
+        return msg;
     }
 }
 
@@ -58,7 +59,7 @@ export class AppModule { }
 corePlatform().bootstrapModule(AppModule).then(res => {
     const ref = res.getModuleRef(DemoModule);
     const client = ref.get(HttpClient);
-    client.get(`./user?id=2`, {
+    client.get(`/user/32?id=2`, {
         params: {
             name: 'imeepos'
         },

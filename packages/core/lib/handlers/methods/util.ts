@@ -1,3 +1,4 @@
+import { Layer } from '../../layer';
 import { ROUTES } from "./../../token";
 import { Injector, ControllerOptions, MethodRef } from "@nger/core";
 export function createHandler(
@@ -11,21 +12,13 @@ export function createHandler(
       item.injector.getInjector('root').setStatic([
         {
           provide: ROUTES,
-          useFactory: () => {
-            return {
-              method: method,
-              path: `${path}${options.path}`,
-              factory: item.call.bind(item)
-            };
-          },
-          deps: [],
+          useValue: new Layer(method,`${path}${options.path}`, {}, item.call.bind(item)),
           multi: true
         }
       ]);
     }
   };
 }
-
 
 export function getNameChain(injector: Injector) {
   if (injector.scope === "root") {

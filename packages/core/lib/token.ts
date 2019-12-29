@@ -1,35 +1,35 @@
 import { InjectionToken, StaticProvider } from "@nger/core";
 import { HttpRequest, HttpResponse } from './http';
+import { Layer } from './layer'
 /**
  * 请求id
  */
-export const REQUEST_ID = new InjectionToken(`@nger/core REQUEST_ID`);
+export const REQUEST_ID = new InjectionToken(`@nger/http REQUEST_ID`);
 /**
  * 请求
  */
-export const REQUEST = new InjectionToken<HttpRequest<any>>(`@nger/core REQUEST`);
+export const REQUEST = new InjectionToken<HttpRequest<any>>(`@nger/http REQUEST`);
 /**
  * 响应
  */
-export const RESPONSE = new InjectionToken<HttpResponse<any>>(`@nger/core RESPONSE`);
+export const RESPONSE = new InjectionToken<HttpResponse<any>>(`@nger/http RESPONSE`);
 /**
  * 结果处理钩子
  */
-export const RESPONSE_HANDLER = new InjectionToken(`@nger/core RESPONSE_HANDLER`);
+export const RESPONSE_HANDLER = new InjectionToken(`@nger/http RESPONSE_HANDLER`);
 export interface Router {
     path: string;
     method: string;
     factory: (providers: StaticProvider[]) => any;
 }
-export const ROUTES = new InjectionToken<Router[]>(`ROUTES`)
-
-
+export const ROUTES = new InjectionToken<Layer[]>(`ROUTES`)
 // pre logger id
-export const PRE_LOGGER_ID = new InjectionToken<string>(`@nger/logger PRE_LOGGER_ID`)
+export const PRE_LOGGER_ID = new InjectionToken<string>(`@nger/http PRE_LOGGER_ID`)
 // last time
-export const LOGGER_LAST_TIME = new InjectionToken(`@nger/logger LOGGER_LAST_TIME`)
+export const LOGGER_LAST_TIME = new InjectionToken(`@nger/http LOGGER_LAST_TIME`)
 // service name
-export const LOGGER_SERVICE_NAME = new InjectionToken(`@nger/logger LOGGER_SERVICE_NAME`)
+export const LOGGER_SERVICE_NAME = new InjectionToken(`@nger/http LOGGER_SERVICE_NAME`)
 // method name
-export const LOGGER_METHOD_NAME = new InjectionToken(`@nger/logger LOGGER_METHOD_NAME`)
-export const LOGGER_MODULE_CHAIN = new InjectionToken(`@nger/logger LOGGER_MODULE_CHAIN`)
+export const LOGGER_METHOD_NAME = new InjectionToken(`@nger/http LOGGER_METHOD_NAME`)
+export const LOGGER_MODULE_CHAIN = new InjectionToken(`@nger/http LOGGER_MODULE_CHAIN`)
+export const PARAMS = new InjectionToken(`@nger/http PARAMS`)

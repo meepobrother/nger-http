@@ -1,23 +1,7 @@
-import { createMethodDecorator, createParameterDecorator, createDecorator, IParameterDecorator, IConstructorDecorator } from '@nger/decorator';
+import { createParameterDecorator, createDecorator, IParameterDecorator, IConstructorDecorator, createMethodDecorator } from '@nger/decorator';
 import { UsePipes } from '@nger/core';
-/**
- * http
- */
 export const HeaderMetadataKey = `@nger/http HeaderMetadataKey`
-export interface HeaderOptions {
-    [key: string]: string
-}
-export const Header = createMethodDecorator<HeaderOptions>(HeaderMetadataKey);
-export const HttpCodeMetadataKey = `@nger/http HttpCodeMetadataKey`
-export const HttpCode = createMethodDecorator<number>(HttpCodeMetadataKey);
-export interface Redirect {
-    url: string;
-    code?: number;
-}
-export const RedirectMetadataKey = `@nger/http RedirectMetadataKey`
-export const Redirect = createMethodDecorator<Redirect>(RedirectMetadataKey);
-export const RenderMetadataKey = `@nger/http RenderMetadataKey`
-export const Render = createMethodDecorator<string>(RenderMetadataKey);
+export const Header = createMethodDecorator(HeaderMetadataKey)
 /**
  * http params
  */
@@ -27,24 +11,9 @@ export const Req = createParameterDecorator<Request>(RequestMetadataKey)
 export const ResponseMetadataKey = `@nger/http ResponseMetadataKey`
 interface Response { }
 export const Res = createParameterDecorator<Response>(ResponseMetadataKey)
-
-export const NextMetadataKey = `@nger/http NextMetadataKey`
-interface Next { }
-export const Next = createParameterDecorator<Next>(NextMetadataKey)
-export const IpMetadataKey = `@nger/http IpMetadataKey`
-interface Ip { }
-export const Ip = createParameterDecorator<Ip>(IpMetadataKey)
-export const SessionMetadataKey = `@nger/http SessionMetadataKey`
-interface Session { }
-export const Session = createParameterDecorator<Session>(SessionMetadataKey)
-export const UploadedFileMetadataKey = `@nger/http UploadedFileMetadataKey`
-export const UploadedFile = createParameterDecorator<string>(UploadedFileMetadataKey)
-export const UploadedFilesMetadataKey = `@nger/http UploadedFilesMetadataKey`
-interface UploadedFiles { }
 export interface WithPipesOptions extends UsePipes {
     property: string;
 }
-export const UploadedFiles = createParameterDecorator<UploadedFiles>(UploadedFilesMetadataKey)
 export function isWithPipesOptions(val: any): val is WithPipesOptions {
     return val && !!val.property
 }

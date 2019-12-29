@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@nger/core@^1.9.6":
+"@nger/core@^1.9.7":
   version "1.9.7"
   resolved "https://registry.yarnpkg.com/@nger/core/-/core-1.9.7.tgz#823ac72475aa7c404bfed748878cab0e361f0523"
   integrity sha512-X9I2mUy8T9w7gaWI3Vd3RnIIjRthQOKCZfHRrhUuBNAkW2by2Lbmf1Pgd+G7tMJrp1w3AReWcVJG8adsSguZUw==
@@ -24,12 +24,14 @@
   dependencies:
     "@nger/decorator" "^1.1.12"
 
-"@nger/http@^1.0.28":
-  version "1.0.28"
-  resolved "https://registry.yarnpkg.com/@nger/http/-/http-1.0.28.tgz#a0075b423cf0eb6e8226cd26d26e30a4e4ebe0a9"
-  integrity sha512-Q75NTS9L1E1vRM1nFMReKmI9KlK/q+Yi6zTpqJmpkAAxuFuAMBvHGAhGe0K5Ewm3xgJ8gRDLe9fqNUBSHQrTPg==
+"@nger/http@^1.0.34":
+  version "1.0.34"
+  resolved "https://registry.yarnpkg.com/@nger/http/-/http-1.0.34.tgz#e9835294652ebe2fafa4bb0741c5c710465a91f5"
+  integrity sha512-INGExcLOa622Z90pnGe8sd0NNpnzcfk7sAjbWBgM93FQyr7T7M/tEhRYpQ3Ynx8is++4n54Jq3daz9QyzpkGZg==
   dependencies:
-    "@nger/core" "^1.9.6"
+    "@nger/core" "^1.9.7"
+    "@types/path-to-regexp" "^1.7.0"
+    path-to-regexp "^6.1.0"
     rxjs "^6.5.3"
 
 "@types/caseless@*":
@@ -46,6 +48,13 @@
   version "13.1.1"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-13.1.1.tgz#6d11a8c2d58405b3db9388ab740106cbfa64c3c9"
   integrity sha512-hx6zWtudh3Arsbl3cXay+JnkvVgCKzCWKv42C9J01N2T2np4h8w5X8u6Tpz5mj38kE3M9FM0Pazx8vKFFMnjLQ==
+
+"@types/path-to-regexp@^1.7.0":
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@types/path-to-regexp/-/path-to-regexp-1.7.0.tgz#f1af9d9c9db5f8ad80aa75ed424db665c48d6cd4"
+  integrity sha1-8a+dnJ21+K2AqnXtQk22ZcSNbNQ=
+  dependencies:
+    path-to-regexp "*"
 
 "@types/request@^2.48.4":
   version "2.48.4"
@@ -286,6 +295,11 @@ oauth-sign@~0.9.0:
   version "0.9.0"
   resolved "https://registry.yarnpkg.com/oauth-sign/-/oauth-sign-0.9.0.tgz#47a7b016baa68b5fa0ecf3dee08a85c679ac6455"
   integrity sha512-fexhUFFPTGV8ybAtSIGbV6gOkSv8UtRbDBnAyLQw4QPKkgNlsH2ByPGtMUqdWkos6YCRmAqViwgZrJc/mRDzZQ==
+
+path-to-regexp@*, path-to-regexp@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-6.1.0.tgz#0b18f88b7a0ce0bfae6a25990c909ab86f512427"
+  integrity sha512-h9DqehX3zZZDCEm+xbfU0ZmwCGFCAAraPJWMXJ4+v32NjZJilVg3k1TcKsRgIb8IQ/izZSaydDc1OhJCZvs2Dw==
 
 performance-now@^2.1.0:
   version "2.1.0"
