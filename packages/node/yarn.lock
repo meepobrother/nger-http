@@ -2,12 +2,12 @@
 # yarn lockfile v1
 
 
-"@nger/core@^1.9.7":
-  version "1.9.7"
-  resolved "https://registry.yarnpkg.com/@nger/core/-/core-1.9.7.tgz#823ac72475aa7c404bfed748878cab0e361f0523"
-  integrity sha512-X9I2mUy8T9w7gaWI3Vd3RnIIjRthQOKCZfHRrhUuBNAkW2by2Lbmf1Pgd+G7tMJrp1w3AReWcVJG8adsSguZUw==
+"@nger/core@^1.9.10":
+  version "1.9.10"
+  resolved "https://registry.yarnpkg.com/@nger/core/-/core-1.9.10.tgz#8cbe027815cfce8c0e6c38877ec63fa5d124d61a"
+  integrity sha512-5835vVMpT0cjSPriTihFxZVjUh1fvNFzyKrgfM3WDRNP/PkHZSm9A0K+De6AJ5R4uSYG/HHJljot7s7sTXFfLg==
   dependencies:
-    "@nger/di" "^1.5.37"
+    "@nger/di" "^1.5.46"
     rxjs "^6.5.3"
 
 "@nger/decorator@^1.1.12":
@@ -17,19 +17,19 @@
   dependencies:
     reflect-metadata "^0.1.13"
 
-"@nger/di@^1.5.37":
-  version "1.5.42"
-  resolved "https://registry.yarnpkg.com/@nger/di/-/di-1.5.42.tgz#5a4696ea96b81220b6eea5b50ffd0d48582346b9"
-  integrity sha512-6rKvECn4kQ5xUrQCcPfq0TgvKf0qbaOoavn+m/FcguzTN6ec3Lig6Pj7WxVM4/QNmfCZrd14HkCleG7WjfFJIQ==
+"@nger/di@^1.5.46":
+  version "1.5.47"
+  resolved "https://registry.yarnpkg.com/@nger/di/-/di-1.5.47.tgz#c71be6dbff223d894ea8d1bfd771a61bdd877328"
+  integrity sha512-MtiQLDrwW1RItj2NaP5e5utW8n/yBNrcgDolUBx7CqfIGeb4ql0C6LoqYMKIQqAsaxxMEyjjXI6mBJNKNX3ySg==
   dependencies:
     "@nger/decorator" "^1.1.12"
 
-"@nger/http@^1.0.34":
-  version "1.0.34"
-  resolved "https://registry.yarnpkg.com/@nger/http/-/http-1.0.34.tgz#e9835294652ebe2fafa4bb0741c5c710465a91f5"
-  integrity sha512-INGExcLOa622Z90pnGe8sd0NNpnzcfk7sAjbWBgM93FQyr7T7M/tEhRYpQ3Ynx8is++4n54Jq3daz9QyzpkGZg==
+"@nger/http@^1.0.36":
+  version "1.0.36"
+  resolved "https://registry.yarnpkg.com/@nger/http/-/http-1.0.36.tgz#8301c19fb291927b3235e8056b79f7e762727429"
+  integrity sha512-tBSC2uPVtVQ/Tp4nQD3Ju1WkS1E3FzX0GmjdSpTNE3Q2r8Mw21ODHepO/Rid4Gb9Uy3D3y+Tt1rPDZk/hajcnA==
   dependencies:
-    "@nger/core" "^1.9.7"
+    "@nger/core" "^1.9.10"
     "@types/path-to-regexp" "^1.7.0"
     path-to-regexp "^6.1.0"
     rxjs "^6.5.3"
@@ -439,11 +439,6 @@ uri-js@^4.2.2:
   integrity sha512-KY9Frmirql91X2Qgjry0Wd4Y+YTdrdZheS8TFwvkbLWf/G5KNJDCh6pKL5OZctEW4+0Baa5idK2ZQuELRwPznQ==
   dependencies:
     punycode "^2.1.0"
-
-url-pattern@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/url-pattern/-/url-pattern-1.0.3.tgz#0409292471b24f23c50d65a47931793d2b5acfc1"
-  integrity sha1-BAkpJHGyTyPFDWWkeTF5PStaz8E=
 
 uuid@^3.3.2:
   version "3.3.3"

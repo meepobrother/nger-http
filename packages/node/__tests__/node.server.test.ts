@@ -6,10 +6,10 @@ import { join } from 'path';
 
 @Injectable()
 export class DemoService {
-    public logger: Logger
-    constructor(private injector: Injector) {
-        debugger;
-        this.logger = this.injector.get(Logger)
+    constructor(private injector: Injector) { }
+    runLogger() {
+        const logger = this.injector.get(Logger)
+        logger.info(`demo`)
     }
 }
 
@@ -27,9 +27,9 @@ export class DemoController {
     }
     @Get(`user/:uid`)
     getUser(@Query(`id`) id: number, @Query(`name`) name: string, @Param(`uid`) uid: number) {
-        const logger = this.logger
+        const service = this.injector.get(DemoService)
+        service.runLogger();
         const msg = `welcome to user home! ${id}-${name}-${uid}`
-        logger.info(msg)
         return msg;
     }
 }

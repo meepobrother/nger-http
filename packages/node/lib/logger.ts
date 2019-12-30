@@ -32,6 +32,7 @@ export class LoggerImpl extends Logger {
     super();
     this.preLoggerId = injector.get(PRE_LOGGER_ID, ``);
     this.requestId = injector.get<string>(REQUEST_ID, ``);
+    this.lastTime = injector.get<number>(LOGGER_LAST_TIME)
     const platformName = injector.get<string>(PLATFORM_NAME, ``);
     this.chain = `${platformName}.${getInjectorChain(injector).join('.')}`;
     this.loggerId = createCid(JSON.stringify({
