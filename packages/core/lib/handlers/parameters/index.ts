@@ -7,6 +7,7 @@ import { queryHandler } from './query';
 import { reqHandler } from './req'
 import { resHandler } from './res';
 import { StaticProvider } from '@nger/di';
+import { cookieHandler } from './cookie';
 
 export const parametersHandler: StaticProvider[] = [
     bodyHandler,
@@ -16,5 +17,6 @@ export const parametersHandler: StaticProvider[] = [
     paramHandler,
     requestIdHandler,
     argsHandler,
-    headersHandler
+    headersHandler,
+    cookieHandler
 ]

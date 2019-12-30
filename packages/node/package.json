@@ -1,6 +1,6 @@
 {
   "name": "@nger/http-node",
-  "version": "1.0.19",
+  "version": "1.0.21",
   "description": "> TODO: description",
   "author": "imeepos <1037483576@qq.com>",
   "homepage": "https://github.com/meepobrother/nger-http#readme",
@@ -29,8 +29,12 @@
     "url": "https://github.com/meepobrother/nger-http/issues"
   },
   "dependencies": {
-    "@nger/http": "^1.0.36",
+    "@nger/http": "^1.0.40",
+    "@types/cookie": "^0.3.3",
+    "@types/cookie-signature": "^1.0.3",
     "content-type": "^1.0.4",
+    "cookie": "^0.4.0",
+    "cookie-signature": "^1.1.0",
     "query-string": "^6.9.0",
     "request": "^2.88.0"
   },

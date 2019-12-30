@@ -11,6 +11,7 @@ import {
   HttpEvent,
   HttpRequest,
   HttpParams,
+  COOKIE,
 } from "@nger/http";
 import {
   Injector,
@@ -20,11 +21,11 @@ import {
   Logger
 } from "@nger/core";
 import { Observable } from "rxjs";
-import UrlPattern from "url-pattern";
-import { parse, ParsedQuery } from "query-string";
-import { createURL, createCid } from "./util";
+import { parse } from "query-string";
+import { createCid } from "./util";
 import { LoggerImpl } from "./logger";
 import { parseurl } from './parseUrl'
+import { CookieService } from "./cookie-service";
 @Injectable()
 export class NodeHttpBackend extends HttpBackend {
   constructor(public injector: Injector) {
@@ -86,6 +87,15 @@ export class NodeHttpBackend extends HttpBackend {
                 useValue: req.headers.get("logger-last-time") || new Date().getTime()
               },
               {
+                provide: COOKIE,
+                useFactory: (injector: Injector) => {
+                  const cookie = req.headers.get("cookie");
+                  const service = injector.get(CookieService);
+                  if (cookie) return service.parse(cookie);
+                },
+                deps: [Injector]
+              },
+              {
                 provide: REQUEST_ID,
                 useFactory: () => req.headers.get("request-id") || createCid(
                   JSON.stringify({
@@ -109,15 +119,6 @@ export class NodeHttpBackend extends HttpBackend {
       obser.complete();
     });
   }
-}
-
-function getPath(path: string) {
-  if (path.endsWith("/")) {
-    const paths = path.split("/");
-    paths.pop();
-    return paths.length > 0 ? paths.join("/") : "/";
-  }
-  return path;
 }
 
 function handlerResult(

@@ -33,3 +33,11 @@ export const LOGGER_SERVICE_NAME = new InjectionToken(`@nger/http LOGGER_SERVICE
 export const LOGGER_METHOD_NAME = new InjectionToken(`@nger/http LOGGER_METHOD_NAME`)
 export const LOGGER_MODULE_CHAIN = new InjectionToken(`@nger/http LOGGER_MODULE_CHAIN`)
 export const PARAMS = new InjectionToken(`@nger/http PARAMS`)
+/**
+ * cookie
+ */
+export const COOKIE = new InjectionToken(`COOKIE`);
+export const COOKIE_SECRET = new InjectionToken<string[]>(`COOKIE_SECRET`);
+export const CURRENT_SECRET = new InjectionToken<string>(`CURRENT_SECRET`);
+
+export const SESSION = new InjectionToken(`@nger/http SESSION`)

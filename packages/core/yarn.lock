@@ -18,9 +18,9 @@
     reflect-metadata "^0.1.13"
 
 "@nger/di@^1.5.46":
-  version "1.5.46"
-  resolved "https://registry.yarnpkg.com/@nger/di/-/di-1.5.46.tgz#1ea3b7fe38e8dec8cbf243b8c09b31f735f772c9"
-  integrity sha512-B9k8J19rYyINsq9YcP8N2F2VxtvsiSnV658Vc/iBbOGwtXolfHKdKUaVjJlsgPeZDWNFU6noAzX+DhqHlQYluQ==
+  version "1.5.48"
+  resolved "https://registry.yarnpkg.com/@nger/di/-/di-1.5.48.tgz#c06f8412a3df67a7282bbbc5a08a01662026f595"
+  integrity sha512-5S+J1HRk8DOnhB8a+z+b+ajI4Y6IJDEjmRADWJmlvvp5XaVrNW1QUC/WYpL+UCQ8FqWAeq/6XtPhIRKKrksEsQ==
   dependencies:
     "@nger/decorator" "^1.1.12"
 
@@ -42,9 +42,9 @@ reflect-metadata@^0.1.13:
   integrity sha512-Ts1Y/anZELhSsjMcU605fU9RE4Oi3p5ORujwbIKXfWa+0Zxs510Qrmrce5/Jowq3cHSZSJqBjypxmHarc+vEWg==
 
 rxjs@^6.5.3:
-  version "6.5.3"
-  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.5.3.tgz#510e26317f4db91a7eb1de77d9dd9ba0a4899a3a"
-  integrity sha512-wuYsAYYFdWTAnAaPoKGNhfpWwKZbJW+HgAJ+mImp+Epl7BG8oNWBCTyRM8gba9k4lk8BgWdoYm21Mo/RYhhbgA==
+  version "6.5.4"
+  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.5.4.tgz#e0777fe0d184cec7872df147f303572d414e211c"
+  integrity sha512-naMQXcgEo3csAEGvw/NydRA0fuS2nDZJiw1YUWFKU7aPPAPGZEsD4Iimit96qwCieH6y614MCLYwdkrWx7z/7Q==
   dependencies:
     tslib "^1.9.0"
 
