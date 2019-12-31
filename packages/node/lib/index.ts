@@ -4,6 +4,7 @@ import { NodeClientHttpInterceptor } from "./node-client-http-interceptor";
 import { NodeHttpBackend } from "./node-http-backend";
 import { NodeHttpRequest } from "./node-http-request";
 import { CookieService } from "./cookie-service";
+import { corsHandler } from "./cors";
 export class EnvConfig extends Config {
   get<T>(key: string, def: T): T {
     return Reflect.get(process.env, key) || def;
@@ -13,6 +14,7 @@ export class EnvConfig extends Config {
   providers: [
     NodeHttpRequest,
     CookieService,
+    corsHandler,
     {
       provide: Config,
       useClass: EnvConfig
@@ -29,4 +31,4 @@ export class EnvConfig extends Config {
     }
   ]
 })
-export class HttpNodeModule {}
+export class HttpNodeModule { }

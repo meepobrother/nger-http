@@ -26,6 +26,7 @@ import { createCid } from "./util";
 import { LoggerImpl } from "./logger";
 import { parseurl } from './parseUrl'
 import { CookieService } from "./cookie-service";
+import { NODE_AFTER_PLUGINS, NODE_BEFORE_PLUGINS } from "./token";
 @Injectable()
 export class NodeHttpBackend extends HttpBackend {
   constructor(public injector: Injector) {
@@ -49,7 +50,7 @@ export class NodeHttpBackend extends HttpBackend {
       url: url.pathname || '',
       params
     });
-    const res = new HttpResponse<any>({
+    let res = new HttpResponse<any>({
       status: 200,
       statusText: "OK",
       url: req.url,
@@ -66,6 +67,10 @@ export class NodeHttpBackend extends HttpBackend {
           if (route.method === req.method || route.method === "ALL") {
             const match = route.match(req.url)
             if (match) {
+              const nodeBeforePlugins = that.injector.get(NODE_BEFORE_PLUGINS, [])
+              nodeBeforePlugins.map(plugin => {
+                res = plugin(route, req, res)
+              })
               const result = route.handleRequest([{
                 provide: Logger,
                 useClass: LoggerImpl,
@@ -106,21 +111,17 @@ export class NodeHttpBackend extends HttpBackend {
                   })
                 )
               }])
+              const nodeAfterPlugins = that.injector.get(NODE_AFTER_PLUGINS, [])
+              nodeAfterPlugins.map(plugin => {
+                res = plugin(result, route, req, res)
+              })
               handlerResult(result, obser, res, true);
             }
           }
         });
-      obser.next(
-        res.clone({
-          status: 404,
-          statusText: "this function is developing..., please waite a minute!"
-        })
-      );
-      obser.complete();
     });
   }
 }
-
 function handlerResult(
   r: any,
   obs: any,

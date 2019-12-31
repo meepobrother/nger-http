@@ -1,5 +1,5 @@
-import { StaticProvider } from '@nger/core';
-import { Key, pathToRegexp, TokensToRegexpOptions, ParseOptions } from 'path-to-regexp';
+import { StaticProvider, CanLoad } from '@nger/core';
+import { Key, pathToRegexp, TokensToRegexpOptions, ParseOptions, } from 'path-to-regexp';
 import { PARAMS } from './token'
 export interface LayerRegExp extends RegExp {
     fast_star: boolean;
@@ -9,23 +9,21 @@ export type LayerOptions = TokensToRegexpOptions & ParseOptions;
 export interface LayoutNext {
     (err: Error | null): void;
 }
-export interface LayoutHandler<Result = any> {
-    (providers: StaticProvider[]): Result;
-}
 export class LayerError extends Error {
     status: number;
     statusCode: number;
 }
 const hasOwnProperty = Object.prototype.hasOwnProperty;
 export class Layer {
-    handle: LayoutHandler;
+    handle: Function;
     name: string;
     params: any;
     path: string | undefined;
+    useGuards: CanLoad[];
     regexp: LayerRegExp;
     keys: Key[];
     method: string;
-    constructor(method: string, path: string, options: LayerOptions = {}, fn: LayoutHandler) {
+    constructor(method: string, path: string, options: LayerOptions = {}, fn: Function, useGuards: CanLoad[]) {
         this.handle = fn;
         this.method = method;
         this.name = fn.name || `<anonymous>`;

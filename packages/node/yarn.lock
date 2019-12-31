@@ -24,10 +24,10 @@
   dependencies:
     "@nger/decorator" "^1.1.12"
 
-"@nger/http@^1.0.40":
-  version "1.0.40"
-  resolved "https://registry.yarnpkg.com/@nger/http/-/http-1.0.40.tgz#8fd065efa2b613bb92561eec6c1acac635d10dd3"
-  integrity sha512-Ysc7xZtGLGzFE/Ds9Mtldlzcka9MdDE+1PvdAxmwYGy+pv1zlgy1pJJb6QqtCgkcYC2EVT5CmC9TL44OT42o+Q==
+"@nger/http@^1.0.44":
+  version "1.0.44"
+  resolved "https://registry.yarnpkg.com/@nger/http/-/http-1.0.44.tgz#2ff4a621883dce777c313136e7b8f752c5bcc027"
+  integrity sha512-cG5hwzU0mGautULJLesBq883XxoJFr69Wp/EjV84URpJ71sZavJUTs/4VI4GZoKqOP90ncx0yGNcmkxuhYTOOg==
   dependencies:
     "@nger/core" "^1.9.10"
     "@types/path-to-regexp" "^1.7.0"

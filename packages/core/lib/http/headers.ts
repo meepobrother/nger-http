@@ -69,11 +69,11 @@ export class HttpHeaders {
     append(name: string, value: string | string[]): HttpHeaders {
         return this.clone({ name, value, op: 'a' });
     }
-    set(name: string, value: string | string[]): HttpHeaders {
-        return this.clone({ name, value, op: 's' });
+    set(name: string, value: string | string[] | number | boolean): HttpHeaders {
+        return this.clone({ name, value: value as any, op: 's' });
     }
-    delete(name: string, value?: string | string[]): HttpHeaders {
-        return this.clone({ name, value, op: 'd' });
+    delete(name: string, value?: string | string[] | number | boolean): HttpHeaders {
+        return this.clone({ name, value: value as any, op: 'd' });
     }
     forEach(fn: (name: string, values: string[]) => void) {
         this.init();

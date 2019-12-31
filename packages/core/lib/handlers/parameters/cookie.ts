@@ -18,7 +18,7 @@ const handler = (
         } else {
             path = options.path;
         }
-        Reflect.set(args, item.parameterIndex, Reflect.get(cookies, path));
+        Reflect.set(args, item.parameterIndex, Reflect.get(cookies || {}, path));
     } else {
         Reflect.set(args, item.parameterIndex, cookies);
     }

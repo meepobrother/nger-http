@@ -48,3 +48,6 @@ export const Options = createMethodDecorator<OptionsOptions | string>(OptionsMet
 export const HeadMetadataKey = `@nger/http HeadMetadataKey`;
 export interface HeadOptions extends HttpMethodOptions { }
 export const Head = createMethodDecorator<HeadOptions | string>(HeadMetadataKey, httpMethodHandler);
+export const SocketMetadataKey = `@nger/http SocketMetadataKey`;
+export interface SocketOptions extends HttpMethodOptions { }
+export const Socket = createMethodDecorator<SocketOptions | string>(HeadMetadataKey, httpMethodHandler);
